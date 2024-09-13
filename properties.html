@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Available Properties</h2>
+    <div id="property-list">
+      <!-- Properties will be dynamically loaded here -->
+    </div>
+  </div>
+  
+  <script>
+    // Fetch and display properties
+    fetch('/api/properties')
+      .then(response => response.json())
+      .then(data => {
+        let propertyList = document.getElementById('property-list');
+        data.forEach(property => {
+          let propertyCard = `
+            <div class="property">
+              <h3>${property.title}</h3>
+              <p>Price: ${property.price}</p>
+            </div>
+          `;
+          propertyList.innerHTML += propertyCard;
+        });
+      });
+  </script>
+  
